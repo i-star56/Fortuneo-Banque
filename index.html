@@ -2,142 +2,75 @@
 <html lang="fr">
 
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fortuneo Banque - Espace Client Premium</title>
+<title>Fortuneo Banque - Espace Client</title>
 
 <link rel="stylesheet" href="style.css">
 
 </head>
 
+
 <body>
 
 
-<!-- =========================================
-     CONNEXION PREMIUM
-========================================= -->
-
-<div id="login-page" class="login-wrapper">
+<!-- ==========================
+     PAGE CONNEXION
+========================== -->
 
 
-    <div class="left-banner">
+<div id="login-page">
 
-        <div class="banner-content">
 
-            <h1>
-                Bienvenue<br>
-                dans votre<br>
-                espace client
-            </h1>
+<div class="login-box">
 
-            <p>
-                Gestion bancaire sécurisée
-            </p>
 
-        </div>
+<h1>
+Fortuneo Banque
+</h1>
 
-    </div>
+
+<p>
+Connexion à votre espace client
+</p>
 
 
 
-    <div class="right-form-container">
+<label>
+Identifiant
+</label>
 
-
-        <div class="form-box">
-
-
-            <h2 class="brand-logo-text">
-                fortuneo
-                <span>banque</span>
-            </h2>
-
-
-            <h3>
-                Connectez-vous à votre espace personnel
-            </h3>
+<input 
+id="username"
+type="text"
+placeholder="Identifiant">
 
 
 
+<label>
+Mot de passe
+</label>
 
-            <form id="login-form">
-
-
-                <div class="input-group">
-
-                    <label>
-                        Identifiant
-                    </label>
-
-                    <input
-                    id="username"
-                    type="text"
-                    placeholder="Votre identifiant">
-
-
-                </div>
+<input
+id="password"
+type="password"
+placeholder="Mot de passe">
 
 
 
-
-
-                <div class="input-group">
-
-                    <label>
-                        Mot de passe
-                    </label>
-
-                    <input
-                    id="password"
-                    type="password"
-                    placeholder="Votre mot de passe">
-
-
-                </div>
+<button id="login-btn">
+Se connecter
+</button>
 
 
 
+<p id="login-error"></p>
 
 
-                <div class="remember-me">
-
-
-                    <input
-                    type="checkbox"
-                    id="remember">
-
-
-                    <label>
-                        Mémoriser mon identifiant
-                    </label>
-
-
-                </div>
-
-
-
-
-                <button
-                class="btn-connexion"
-                type="submit">
-
-                    Connexion
-
-                </button>
-
-
-
-                <p id="login-message"></p>
-
-
-
-            </form>
-
-
-        </div>
-
-
-    </div>
+</div>
 
 
 </div>
@@ -149,74 +82,49 @@
 
 
 
-<!-- =========================================
-     APPLICATION CLIENT
-========================================= -->
+<!-- ==========================
+     ESPACE CLIENT
+========================== -->
 
 
-<div
-id="client-space"
-class="app-container hidden">
-
+<div id="client-space" class="hidden">
 
 
 
+<header>
 
 
-
-<!-- HEADER -->
-
-<header class="app-header">
+<div class="user-box">
 
 
-    <div class="header-user"
-    onclick="showPage('profile-page')">
+<div class="avatar" id="avatar">
+EG
+</div>
 
 
-        <div class="avatar"
-        id="header-avatar">
+<div>
 
-            EG
-
-        </div>
-
+<h3 id="client-name">
+Client
+</h3>
 
 
-        <div>
+<span>
+Espace personnel
+</span>
 
 
-            <p class="user-greeting">
-                Espace Client Premium
-            </p>
+</div>
 
 
-
-            <p
-            class="user-status"
-            id="client-name">
-
-                Client
-
-            </p>
-
-
-        </div>
-
-
-    </div>
+</div>
 
 
 
 
-
-    <button
-    id="logout-button"
-    class="btn-logout-icon">
-
-        Déconnexion
-
-    </button>
-
+<button id="logout-btn">
+Déconnexion
+</button>
 
 
 </header>
@@ -228,198 +136,38 @@ class="app-container hidden">
 
 
 
-<!-- ALERTE SECURITE -->
 
-<div class="alert-blocked-bar">
+<main>
 
 
-    <span class="alert-icon">
-        🔐
-    </span>
 
 
-    <div>
 
-        <strong>
-            Protection bancaire active
-        </strong>
+<!-- ACCUEIL -->
 
 
-        <p>
-            Votre espace est surveillé et sécurisé.
-        </p>
+<section 
+id="home-page"
+class="page active">
 
 
-    </div>
+<div class="balance-card">
 
 
-</div>
+<p>
+Solde disponible
+</p>
 
 
+<h1 id="balance">
+0 €
+</h1>
 
 
-
-
-
-
-<main class="app-main">
-
-
-
-
-
-
-
-<!-- =========================================
-     DASHBOARD
-========================================= -->
-
-
-<section
-id="dashboard-page"
-class="app-section active-section">
-
-
-
-
-
-<div class="section-title">
-
-    Vos comptes
-
-</div>
-
-
-
-
-
-
-<div class="premium-card">
-
-
-    <div class="card-header">
-
-
-        <span class="badge-account">
-
-            Compte courant
-
-        </span>
-
-
-
-        <span
-        id="dashboard-account-number">
-
-            FR76 ****
-
-        </span>
-
-
-    </div>
-
-
-
-
-
-    <div
-    class="amount"
-    id="account-balance">
-
-        0,00 €
-
-    </div>
-
-
-
-
-
-    <p
-    class="iban-text"
-    id="dashboard-iban">
-
-        IBAN
-
-    </p>
-
-
-
-</div>
-
-
-
-
-
-
-<div class="financial-summary-card">
-
-
-<h4>
-Répartition financière
-</h4>
-
-
-
-<div class="chart-simulation-bar">
-
-
-<div
-class="bar-segment liquid"
-style="width:85%">
-
-Liquidités
-
-</div>
-
-
-<div
-class="bar-segment bonds"
-style="width:15%">
-
-Placements
-
-</div>
-
-
-</div>
-
-
-
-
-<div class="financial-stats">
-
-
-<div>
-
-<span>
-Statut :
+<span id="status">
+Compte disponible
 </span>
 
-<strong id="account-status">
-
-Disponible
-
-</strong>
-
-</div>
-
-
-<div>
-
-<span>
-Connexion :
-</span>
-
-<strong>
-Aujourd'hui
-</strong>
-
-</div>
-
-
-
-</div>
-
 
 </div>
 
@@ -429,59 +177,36 @@ Aujourd'hui
 
 
 
-<div class="section-title">
-
-Actions rapides
-
-</div>
+<div class="quick-menu">
 
 
-
-
-
-
-<div class="quick-actions">
-
-
-<button onclick="showPage('accounts-page')">
-
+<button onclick="openPage('accounts-page')">
 💳
 <br>
 Comptes
-
 </button>
 
 
-
-
-<button onclick="showPage('history-page')">
-
+<button onclick="openPage('history-page')">
 📄
 <br>
-Opérations
-
+Historique
 </button>
 
 
 
-
-<button onclick="showPage('transfer-page')">
-
+<button onclick="openPage('transfer-page')">
 ↔️
 <br>
 Virement
-
 </button>
 
 
 
-
-<button onclick="showPage('cards-page')">
-
+<button onclick="openPage('card-page')">
 💳
 <br>
-Cartes
-
+Carte
 </button>
 
 
@@ -494,7 +219,8 @@ Cartes
 
 
 
-<div class="content-box">
+
+<div class="box">
 
 
 <h2>
@@ -502,29 +228,30 @@ Dernières opérations
 </h2>
 
 
+<div id="last-operations">
 
-<div
-id="dashboard-history"
-class="transactions-container">
+</div>
 
 
 </div>
 
 
-
-</div>
-
+</section>
 
 
 
 
-</section><!-- =========================================
-     PAGE COMPTES
-========================================= -->
 
-<section
+
+
+
+
+<!-- COMPTES -->
+
+
+<section 
 id="accounts-page"
-class="app-section">
+class="page">
 
 
 <h2>
@@ -532,95 +259,9 @@ Mes comptes
 </h2>
 
 
-
-<div
-class="content-box"
-id="accounts-container">
+<div class="box" id="account-info">
 
 </div>
-
-
-
-
-
-<div class="content-box">
-
-
-<h2>
-Informations bancaires
-</h2>
-
-
-
-<div class="bank-information">
-
-
-<div>
-
-<span>
-Titulaire
-</span>
-
-<strong id="rib-holder">
-
-</strong>
-
-</div>
-
-
-
-
-<div>
-
-<span>
-IBAN
-</span>
-
-<strong id="rib-iban">
-
-</strong>
-
-</div>
-
-
-
-
-
-<div>
-
-<span>
-BIC
-</span>
-
-<strong id="rib-bic">
-
-</strong>
-
-</div>
-
-
-
-
-
-<div>
-
-<span>
-Numéro de compte
-</span>
-
-<strong id="rib-number">
-
-</strong>
-
-</div>
-
-
-
-</div>
-
-
-</div>
-
 
 
 </section>
@@ -633,47 +274,33 @@ Numéro de compte
 
 
 
-<!-- =========================================
-     PAGE HISTORIQUE
-========================================= -->
+<!-- HISTORIQUE -->
 
 
 <section
 id="history-page"
-class="app-section">
-
+class="page">
 
 
 <h2>
-Historique des opérations
+Historique
 </h2>
 
 
+<div class="box">
 
 
-<div class="input-group">
+<input 
+id="search"
+placeholder="Rechercher">
 
 
-<input
-id="history-search"
-type="text"
-placeholder="Rechercher une opération">
-
-
-</div>
-
-
-
-
-
-
-<div
-id="history-container"
-class="transactions-container">
-
+<div id="operations">
 
 </div>
 
+
+</div>
 
 
 </section>
@@ -686,183 +313,71 @@ class="transactions-container">
 
 
 
-<!-- =========================================
-     PAGE VIREMENT
-========================================= -->
+<!-- VIREMENT -->
 
 
 <section
 id="transfer-page"
-class="app-section">
+class="page">
 
 
 <h2>
-Effectuer un virement
+Nouveau virement
 </h2>
 
 
 
+<div class="box">
 
-
-<div
-class="form-card"
-id="form-container">
-
-
-
-
-
-<div class="form-field">
 
 <label>
 Bénéficiaire
 </label>
 
 
-<input
-id="beneficiary-name"
-placeholder="Nom du bénéficiaire">
+<input id="beneficiary">
 
 
-</div>
-
-
-
-
-
-
-
-<div class="form-field">
 
 <label>
 IBAN
 </label>
 
 
-<input
-id="beneficiary-iban"
-placeholder="FR76...">
+<input id="iban">
 
 
-</div>
-
-
-
-
-
-
-
-<div class="form-field">
 
 <label>
 Montant
 </label>
 
 
-<input
-id="transfer-amount"
-type="number"
-placeholder="0.00">
+<input 
+id="amount"
+type="number">
 
 
-</div>
-
-
-
-
-
-
-
-<div class="form-field">
 
 <label>
 Motif
 </label>
 
 
-<input
-id="transfer-reason"
-placeholder="Motif du virement">
-
-
-</div>
+<input id="reason">
 
 
 
-
-
-
-<button
-id="transfer-button"
-class="btn-action">
-
-Signer et envoyer
-
+<button id="send-transfer">
+Envoyer
 </button>
 
 
 
-
-</div>
-
-
-
-
-
-
-
-<div
-id="loader-container"
-class="loader-box hidden">
-
-
-<h4>
-Traitement sécurisé en cours...
-</h4>
-
-
-<p>
-Vérification bancaire
-</p>
-
-
-
-<div class="progress-bar-bg">
-
-
-<div
-id="progress-bar-fill"
-class="progress-bar-fill">
-
-</div>
+<p id="transfer-result"></p>
 
 
 </div>
-
-
-
-<div
-id="progress-text"
-class="progress-text">
-
-0%
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-<div
-id="transfer-result">
-
-</div>
-
-
 
 
 </section>
@@ -875,355 +390,53 @@ id="transfer-result">
 
 
 
-<!-- =========================================
-     PAGE CARTES
-========================================= -->
+<!-- CARTE -->
 
 
 <section
-id="cards-page"
-class="app-section">
+id="card-page"
+class="page">
 
 
 <h2>
-Mes cartes bancaires
+Ma carte bancaire
 </h2>
 
 
 
-
-
-<div
-id="cards-container">
-
-</div>
-
-
-
-
-
-
-<div class="content-box">
+<div class="bank-card">
 
 
 <h3>
-Gestion de la carte
+Fortuneo
 </h3>
 
 
+<div class="chip"></div>
 
-<div class="security-row">
-
-
-<span>
-Statut
-</span>
-
-
-<strong>
-Active
-</strong>
-
-
-</div>
-
-
-
-<div class="security-row">
-
-
-<span>
-Paiement en ligne
-</span>
-
-
-<strong>
-Activé
-</strong>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-</section><!-- =========================================
-     PAGE PROFIL
-========================================= -->
-
-<section
-id="profile-page"
-class="app-section">
 
 
 <h2>
-Mon profil
+**** **** **** 
+<span id="card-number">
+0000
+</span>
 </h2>
 
 
 
+<p id="card-name">
 
-<div class="content-box">
-
-
-<div class="profile-header">
-
-
-<div
-class="avatar large"
-id="profile-avatar">
-
-EG
-
-</div>
-
-
-
-
-<div>
-
-
-<h3 id="profile-full-name">
-
-</h3>
-
-
-
-<p>
-Informations personnelles
 </p>
 
 
 
-</div>
+<p id="card-date">
 
-
-
-</div>
-
-
-
-
-
-
-
-<div class="information-row">
-
-
-<span>
-Identifiant
-</span>
-
-
-<strong id="profile-login">
-
-</strong>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="information-row">
-
-
-<span>
-Email
-</span>
-
-
-<strong id="profile-email">
-
-</strong>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="information-row">
-
-
-<span>
-Téléphone
-</span>
-
-
-<strong id="profile-phone">
-
-</strong>
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- =========================================
-     PAGE NOTIFICATIONS
-========================================= -->
-
-
-<section
-id="notifications-page"
-class="app-section">
-
-
-<h2>
-Notifications
-</h2>
-
-
-
-
-
-<div
-id="notifications-container"
-class="content-box">
-
-
-</div>
-
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- =========================================
-     PAGE STATISTIQUES
-========================================= -->
-
-
-<section
-id="statistics-page"
-class="app-section">
-
-
-<h2>
-Analyse du compte
-</h2>
-
-
-
-
-
-
-<div class="statistics-grid">
-
-
-
-
-
-<div class="stat-card">
-
-
-<p>
-Nombre d'opérations
 </p>
 
 
-<strong
-id="operation-count">
-
-0
-
-</strong>
-
-
 </div>
-
-
-
-
-
-
-
-<div class="stat-card">
-
-
-<p>
-Entrées
-</p>
-
-
-<strong
-id="income-total">
-
-0,00 €
-
-</strong>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="stat-card">
-
-
-<p>
-Sorties
-</p>
-
-
-<strong
-id="expense-total">
-
-0,00 €
-
-</strong>
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-
-
 
 
 </section>
@@ -1233,408 +446,52 @@ id="expense-total">
 
 
 
+</main>
 
 
 
-<!-- =========================================
-     PAGE DOCUMENTS
-========================================= -->
 
 
-<section
-id="documents-page"
-class="app-section">
 
 
-<h2>
-Documents
-</h2>
 
 
 
+<!-- MENU BAS -->
 
 
-<div class="content-box document-list">
+<nav>
 
 
-
-<div class="document-item">
-
-
-<span>
-📄 Relevé bancaire
-</span>
-
-
-
-<button>
-Ouvrir
-</button>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="document-item">
-
-
-<span>
-📄 Informations compte
-</span>
-
-
-
-<button>
-Ouvrir
-</button>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="document-item">
-
-
-<span>
-📄 Historique complet
-</span>
-
-
-
-<button>
-Ouvrir
-</button>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-</section><!-- =========================================
-     PAGE SECURITE
-========================================= -->
-
-
-<section
-id="security-page"
-class="app-section">
-
-
-<h2>
-Sécurité
-</h2>
-
-
-
-
-<div class="content-box">
-
-
-<div class="security-row">
-
-<span>
-Protection du compte
-</span>
-
-
-<strong>
-Active
-</strong>
-
-
-</div>
-
-
-
-
-
-<div class="security-row">
-
-<span>
-Notifications de sécurité
-</span>
-
-
-<strong>
-Activées
-</strong>
-
-
-</div>
-
-
-
-
-
-<div class="security-row">
-
-<span>
-Dernière connexion
-</span>
-
-
-<strong>
-Aujourd'hui
-</strong>
-
-
-</div>
-
-
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- =========================================
-     PAGE PARAMETRES
-========================================= -->
-
-
-<section
-id="settings-page"
-class="app-section">
-
-
-<h2>
-Paramètres
-</h2>
-
-
-
-
-<div class="content-box settings-menu">
-
-
-
-<button onclick="showPage('profile-page')">
-
-👤 Profil
-
-</button>
-
-
-
-
-<button onclick="showPage('statistics-page')">
-
-📊 Analyse
-
-</button>
-
-
-
-
-<button onclick="showPage('documents-page')">
-
-📄 Documents
-
-</button>
-
-
-
-
-<button onclick="showPage('security-page')">
-
-🔐 Sécurité
-
-</button>
-
-
-
-
-</div>
-
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- =========================================
-     MODALE DETAIL OPERATION
-========================================= -->
-
-
-<div
-id="operation-modal"
-class="modal-overlay hidden">
-
-
-<div class="modal-card">
-
-
-<button
-id="close-modal"
-class="close-button">
-
-×
-
-</button>
-
-
-
-
-<h3>
-Détails de l'opération
-</h3>
-
-
-
-
-<div
-id="operation-details"
-class="modal-body">
-
-
-</div>
-
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- =========================================
-     NAVIGATION BASSE
-========================================= -->
-
-
-<nav class="app-nav">
-
-
-
-
-
-<button
-class="nav-item active-nav"
-onclick="showPage('dashboard-page')">
-
-
-<span class="nav-icon">
+<button onclick="openPage('home-page')">
 🏠
-</span>
-
-
-<span class="nav-label">
+<br>
 Accueil
-</span>
-
-
 </button>
 
 
 
-
-
-
-
-<button
-class="nav-item"
-onclick="showPage('accounts-page')">
-
-
-<span class="nav-icon">
+<button onclick="openPage('accounts-page')">
 💳
-</span>
-
-
-<span class="nav-label">
+<br>
 Comptes
-</span>
-
-
 </button>
 
 
 
-
-
-
-
-<button
-class="nav-item"
-onclick="showPage('history-page')">
-
-
-<span class="nav-icon">
+<button onclick="openPage('history-page')">
 📄
-</span>
-
-
-<span class="nav-label">
-Opérations
-</span>
-
-
+<br>
+Historique
 </button>
 
 
 
-
-
-
-
-<button
-class="nav-item"
-onclick="showPage('settings-page')">
-
-
-<span class="nav-icon">
-⚙️
-</span>
-
-
-<span class="nav-label">
-Paramètres
-</span>
-
-
+<button onclick="openPage('card-page')">
+👤
+<br>
+Carte
 </button>
-
 
 
 
@@ -1645,8 +502,6 @@ Paramètres
 
 
 
-</main>
-
 </div>
 
 
@@ -1655,17 +510,7 @@ Paramètres
 
 
 
-
-
-<!-- =========================================
-     SCRIPTS
-========================================= -->
-
-
-<script src="database.js"></script>
-
 <script src="script.js"></script>
-
 
 
 </body>
