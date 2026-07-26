@@ -1,518 +1,171 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Fortuneo Banque - Espace Client</title>
-
-<link rel="stylesheet" href="style.css">
-
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Fortuneo Banque - Espace Privé Haute Richesse</title>
+   <link rel="stylesheet" href="style.css">
 </head>
-
-
 <body>
 
-
-<!-- ==========================
-     PAGE CONNEXION
-========================== -->
-
-
-<div id="login-page">
-
-
-<div class="login-box">
-
-
-<h1>
-Fortuneo Banque
-</h1>
-
-
-<p>
-Connexion à votre espace client
-</p>
-
-
-
-<label>
-Identifiant
-</label>
-
-<input 
-id="username"
-type="text"
-placeholder="Identifiant">
-
-
-
-<label>
-Mot de passe
-</label>
-
-<input
-id="password"
-type="password"
-placeholder="Mot de passe">
-
-
-
-<button id="login-btn">
-Se connecter
-</button>
-
-
-
-<p id="login-error"></p>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-<!-- ==========================
-     ESPACE CLIENT
-========================== -->
-
-
-<div id="client-space" class="hidden">
-
-
-
-<header>
-
-
-<div class="user-box">
-
-
-<div class="avatar" id="avatar">
-EG
-</div>
-
-
-<div>
-
-<h3 id="client-name">
-Client
-</h3>
-
-
-<span>
-Espace personnel
-</span>
-
-
-</div>
-
-
-</div>
-
-
-
-
-<button id="logout-btn">
-Déconnexion
-</button>
-
-
-</header>
-
-
-
-
-
-
-
-
-
-<main>
-
-
-
-
-
-<!-- ACCUEIL -->
-
-
-<section 
-id="home-page"
-class="page active">
-
-
-<div class="balance-card">
-
-
-<p>
-Solde disponible
-</p>
-
-
-<h1 id="balance">
-0 €
-</h1>
-
-
-<span id="status">
-Compte disponible
-</span>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="quick-menu">
-
-
-<button onclick="openPage('accounts-page')">
-💳
-<br>
-Comptes
-</button>
-
-
-<button onclick="openPage('history-page')">
-📄
-<br>
-Historique
-</button>
-
-
-
-<button onclick="openPage('transfer-page')">
-↔️
-<br>
-Virement
-</button>
-
-
-
-<button onclick="openPage('card-page')">
-💳
-<br>
-Carte
-</button>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="box">
-
-
-<h2>
-Dernières opérations
-</h2>
-
-
-<div id="last-operations">
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- COMPTES -->
-
-
-<section 
-id="accounts-page"
-class="page">
-
-
-<h2>
-Mes comptes
-</h2>
-
-
-<div class="box" id="account-info">
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- HISTORIQUE -->
-
-
-<section
-id="history-page"
-class="page">
-
-
-<h2>
-Historique
-</h2>
-
-
-<div class="box">
-
-
-<input 
-id="search"
-placeholder="Rechercher">
-
-
-<div id="operations">
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- VIREMENT -->
-
-
-<section
-id="transfer-page"
-class="page">
-
-
-<h2>
-Nouveau virement
-</h2>
-
-
-
-<div class="box">
-
-
-<label>
-Bénéficiaire
-</label>
-
-
-<input id="beneficiary">
-
-
-
-<label>
-IBAN
-</label>
-
-
-<input id="iban">
-
-
-
-<label>
-Montant
-</label>
-
-
-<input 
-id="amount"
-type="number">
-
-
-
-<label>
-Motif
-</label>
-
-
-<input id="reason">
-
-
-
-<button id="send-transfer">
-Envoyer
-</button>
-
-
-
-<p id="transfer-result"></p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- CARTE -->
-
-
-<section
-id="card-page"
-class="page">
-
-
-<h2>
-Ma carte bancaire
-</h2>
-
-
-
-<div class="bank-card">
-
-
-<h3>
-Fortuneo
-</h3>
-
-
-<div class="chip"></div>
-
-
-
-<h2>
-**** **** **** 
-<span id="card-number">
-0000
-</span>
-</h2>
-
-
-
-<p id="card-name">
-
-</p>
-
-
-
-<p id="card-date">
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-</main>
-
-
-
-
-
-
-
-
-
-
-<!-- MENU BAS -->
-
-
-<nav>
-
-
-<button onclick="openPage('home-page')">
-🏠
-<br>
-Accueil
-</button>
-
-
-
-<button onclick="openPage('accounts-page')">
-💳
-<br>
-Comptes
-</button>
-
-
-
-<button onclick="openPage('history-page')">
-📄
-<br>
-Historique
-</button>
-
-
-
-<button onclick="openPage('card-page')">
-👤
-<br>
-Carte
-</button>
-
-
-
-</nav>
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-<script src="script.js"></script>
-
-
+   <!-- INTERFACE DE CONNEXION -->
+   <div class="login-wrapper" id="login-screen">
+       <div class="left-banner">
+           <div class="banner-content">
+               <h1>Bienvenue<br>dans votre<br>espace client.</h1>
+           </div>
+       </div>
+       <div class="right-form-container">
+           <div class="form-box">
+               <h2 class="brand-logo-text">fortuneo <span>banque</span></h2>
+               <h3>Saisissez votre identifiant et mot de passe</h3>
+               <div class="input-group">
+                   <label for="username">Identifiant</label>
+                   <input type="text" id="username" placeholder="000000" autocomplete="off">
+               </div>
+               <div class="input-group">
+                   <label for="password">Mot de passe</label>
+                   <input type="password" id="password" placeholder="••••••••••••">
+               </div>
+               <div class="remember-me">
+                   <input type="checkbox" id="remember">
+                   <label for="remember">Mémoriser l'identifiant</label>
+               </div>
+               <button class="btn-connexion" onclick="login()">Connexion</button>
+           </div>
+       </div>
+   </div>
+
+   <!-- INTERFACE APPLICATIVE COMPLÈTE -->
+   <div class="app-container" id="app-screen" style="display: none;">
+       <header class="app-header">
+           <div class="header-user">
+               <div class="avatar">EG</div>
+               <div>
+                   <p class="user-greeting">Espace Gestion Privée</p>
+                   <p class="user-status">M. Edmond Garnier</p>
+               </div>
+           </div>
+           <button onclick="logout()" class="btn-logout-icon">Déconnexion</button>
+       </header>
+
+       <div class="alert-blocked-bar">
+           <span class="alert-icon">🚨</span>
+           <div>
+               <strong>COMPTE SOUS COUP DE RESTRICTION ADMINISTRATIVE</strong>
+               <p>Certaines fonctionnalités de transfert et de retrait sont limitées.</p>
+           </div>
+       </div>
+
+       <main class="app-main">
+           <!-- ACCUEIL ULTRA RÉEL -->
+           <div id="home-section" class="app-section active-section">
+               <div class="section-title">Vos Comptes & Épargne</div>
+               <div class="premium-card">
+                   <div class="card-header">
+                       <span class="badge-account">Compte Courant d'Excellence</span>
+                       <span class="account-number">N° FR76 1180...094</span>
+                   </div>
+                   <div class="amount" id="balance">7 585 024,00 €</div>
+                   <p class="iban-text">IBAN: FR76 1180 6000 2001 9845 3321 094</p>
+               </div>
+
+               <!-- Répartition graphique simulée -->
+               <div class="financial-summary-card">
+                   <h4>Répartition de vos actifs</h4>
+                   <div class="chart-simulation-bar">
+                       <div class="bar-segment liquid" style="width: 85%;">Liquidités (85%)</div>
+                       <div class="bar-segment bonds" style="width: 15%;">Titres (15%)</div>
+                   </div>
+                   <div class="financial-stats">
+                       <div><span>Conseiller Privé :</span> <strong>Cabinet Élite Paris</strong></div>
+                       <div><span>Dernière Connexion :</span> <strong id="current-date">Aujourd'hui</strong></div>
+                   </div>
+               </div>
+
+               <div class="section-title">Historique des opérations globales</div>
+               <div class="transactions-container" id="transactions-list">
+                   <div class="transaction-item" onclick="openDetails('Ordre Interbancaire de Compensation', '+7 500 000,00 €', 'Hier', 'Dépôt Institutionnel de Titres de Créances Privés (Fonds Certifiés)', 'Validé')">
+                       <div class="tx-info">
+                           <span class="tx-title">Transfert d'actifs financiers</span>
+                           <span class="tx-date">Hier • Compte d'investissement</span>
+                       </div>
+                       <span class="tx-amount positive">+7 500 000,00 €</span>
+                   </div>
+                   <div class="transaction-item" onclick="openDetails('Versement Dividendes Annuels', '+85 024,00 €', 'Il y a 2 jours', 'Rendements de Valeurs Mobilières Cotées - Compte de Trading', 'Validé')">
+                       <div class="tx-info">
+                           <span class="tx-title">Virement reçu (Dividendes)</span>
+                           <span class="tx-date">Il y a 2 jours • Euronext Clear</span>
+                       </div>
+                       <span class="tx-amount positive">+85 024,00 €</span>
+                   </div>
+               </div>
+           </div>
+
+           <!-- VIREMENTS INTERACTIFS -->
+           <div id="transfer-section" class="app-section">
+               <div class="section-title">Émettre un virement de capitaux</div>
+               <div class="form-card" id="form-container">
+                   <div class="form-field"><label>Débiteur</label><select disabled><option>Compte Courant Excellence (*094)</option></select></div>
+                   <div class="form-field"><label>Nom complet du bénéficiaire</label><input type="text" id="beneficiary" placeholder="Ex: Cabinet Notarial Garnier"></div>
+                   <div class="form-field"><label>IBAN National ou International</label><input type="text" id="iban-input" placeholder="FR76..."></div>
+                   <div class="form-field"><label>Code BIC / SWIFT</label><input type="text" id="bic-input" placeholder="Ex: FORFRPPXXX"></div>
+                   <div class="form-field"><label>Montant du transfert (€)</label><input type="number" id="amount-input" placeholder="0.00"></div>
+                   <div class="form-field"><label>Libellé de l'opération</label><input type="text" id="reason-input" placeholder="Motif officiel obligatoire"></div>
+                   <button class="btn-action" id="btn-transfert" onclick="startTransferAnimation()">Signer et envoyer les fonds</button>
+               </div>
+
+               <!-- JAUGE DE CHARGEMENT PROGRESSIVE -->
+               <div id="loader-container" class="loader-box" style="display: none;">
+                   <h4>SÉCURISATION DU TRANSFERT EN COURS...</h4>
+                   <p>Contrôle de conformité réglementaire SEPA/TRACFIN</p>
+                   <div class="progress-bar-bg"><div id="progress-bar-fill" class="progress-bar-fill"></div></div>
+                   <div id="progress-text" class="progress-text">0%</div>
+               </div>
+           </div>
+
+           <!-- CARTES DE CRÉDIT -->
+           <div id="card-section" class="app-section">
+               <div class="section-title">Moyens de paiement Élite</div>
+               <div class="credit-card-ui">
+                   <div class="cc-brand">fortuneo</div>
+                   <div class="cc-chip"></div>
+                   <div class="cc-number">**** **** **** 8842</div>
+                   <div class="cc-footer">
+                       <div><span class="cc-label">TITULAIRE</span><span class="cc-value">EDMOND GARNIER</span></div>
+                       <span class="cc-type">Mastercard World Elite</span>
+                   </div>
+               </div>
+               <div class="card-status-box">
+                   <div class="status-row"><span>Statut Global</span><span class="status-badge" style="background:#fee2e2; color:#ef4444; font-weight:700;">GELÉE TEMPORAIREMENT</span></div>
+                   <div class="status-row"><span>Plafond de Virement Élevé</span><strong>Indéterminé</strong></div>
+               </div>
+           </div>
+       </main>
+
+       <!-- MODAL DÉTAILS TRANSACTIONS -->
+       <div class="modal-overlay" id="tx-modal" style="display: none;">
+           <div class="modal-card">
+               <h3 id="modal-title">Détails du transfert</h3>
+               <hr>
+               <div class="modal-body">
+                   <p><strong>Type:</strong> <span id="modal-type"></span></p>
+                   <p><strong>Montant:</strong> <span id="modal-amount"></span></p>
+                   <p><strong>Date d'émission:</strong> <span id="modal-date"></span></p>
+                   <p><strong>Motif de la transaction:</strong> <span id="modal-reason"></span></p>
+                   <p><strong>Statut de conformité:</strong> <span id="modal-status"></span></p>
+               </div>
+               <button class="btn-action" style="background:#475569;" onclick="closeDetails()">Fermer la fiche</button>
+           </div>
+       </div>
+
+       <nav class="app-nav">
+           <button class="nav-item active-nav" onclick="showSection('home-section')"><span class="nav-icon">📊</span><span class="nav-label">Portefeuille</span></button>
+           <button class="nav-item" onclick="showSection('transfer-section')"><span class="nav-icon">💸</span><span class="nav-label">Virements</span></button>
+           <button class="nav-item" onclick="showSection('card-section')"><span class="nav-icon">💳</span><span class="nav-label">Gestion Cartes</span></button>
+       </nav>
+   </div>
+
+   <script src="script.js"></script>
 </body>
-
 </html>
