@@ -1,715 +1,97 @@
-/* =====================================
-   STYLE GENERAL
-===================================== */
-
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-
-body{
-
-    font-family:
-    Arial,
-    "Segoe UI",
-    sans-serif;
-
-    background:#f1f5f9;
-
-    color:#0f172a;
-
-    min-height:100vh;
-
-}
-
-
-
-button{
-
-    cursor:pointer;
-
-    border:none;
-
-}
-
-
-
-input{
-
-    width:100%;
-
-    padding:14px;
-
-    border-radius:12px;
-
-    border:1px solid #cbd5e1;
-
-    margin-bottom:15px;
-
-    font-size:15px;
-
-}
-
-
-
-.hidden{
-
-    display:none!important;
-
-}
-
-
-
-
-
-/* =====================================
-   CONNEXION
-===================================== */
-
-
-#login-page{
-
-    height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-
-    background:
-
-    linear-gradient(
-        135deg,
-        #065f46,
-        #22c55e
-    );
-
-}
-
-
-
-.login-box{
-
-    background:white;
-
-    width:400px;
-
-    padding:40px;
-
-    border-radius:25px;
-
-
-    box-shadow:
-
-    0 20px 50px
-    rgba(0,0,0,.2);
-
-}
-
-
-
-.login-box h1{
-
-    text-align:center;
-
-    color:#15803d;
-
-    margin-bottom:10px;
-
-}
-
-
-
-.login-box p{
-
-    text-align:center;
-
-    color:#64748b;
-
-    margin-bottom:25px;
-
-}
-
-
-
-.login-box label{
-
-    display:block;
-
-    font-weight:bold;
-
-    margin-bottom:7px;
-
-}
-
-
-
-#login-btn{
-
-    width:100%;
-
-    padding:15px;
-
-    border-radius:30px;
-
-    background:#15803d;
-
-    color:white;
-
-    font-weight:bold;
-
-    font-size:16px;
-
-}
-
-
-
-#login-error{
-
-    color:#dc2626;
-
-    margin-top:15px;
-
-}
-
-
-
-
-
-
-
-/* =====================================
-   HEADER
-===================================== */
-
-
-header{
-
-    height:80px;
-
-    background:white;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:0 30px;
-
-
-    border-bottom:
-
-    1px solid #e2e8f0;
-
-}
-
-
-
-.user-box{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:15px;
-
-}
-
-
-
-.avatar{
-
-    width:50px;
-
-    height:50px;
-
-    background:#15803d;
-
-    color:white;
-
-    border-radius:50%;
-
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-weight:bold;
-
-}
-
-
-
-.user-box span{
-
-    color:#64748b;
-
-    font-size:14px;
-
-}
-
-
-
-#logout-btn{
-
-    background:#fee2e2;
-
-    color:#dc2626;
-
-    padding:10px 20px;
-
-    border-radius:25px;
-
-    font-weight:bold;
-
-}
-
-
-
-
-
-
-
-/* =====================================
-   CONTENU
-===================================== */
-
-
-main{
-
-    max-width:900px;
-
-    margin:auto;
-
-    padding:25px;
-
-    padding-bottom:100px;
-
-}
-
-
-
-.page{
-
-    display:none;
-
-}
-
-
-
-.page.active{
-
-    display:block;
-
-}
-
-
-
-
-
-
-
-/* =====================================
-   SOLDE
-===================================== */
-
-
-.balance-card{
-
-
-    background:
-
-    linear-gradient(
-        135deg,
-        #111827,
-        #334155
-    );
-
-
-    color:white;
-
-    padding:35px;
-
-    border-radius:25px;
-
-
-    box-shadow:
-
-    0 15px 35px
-    rgba(0,0,0,.2);
-
-}
-
-
-
-.balance-card h1{
-
-    font-size:42px;
-
-    margin:15px 0;
-
-}
-
-
-
-
-
-
-
-
-/* =====================================
-   MENU RAPIDE
-===================================== */
-
-
-.quick-menu{
-
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
-
-    gap:15px;
-
-    margin:25px 0;
-
-
-}
-
-
-
-.quick-menu button{
-
-
-    background:white;
-
-    padding:22px;
-
-    border-radius:18px;
-
-
-    box-shadow:
-
-    0 5px 20px
-    rgba(0,0,0,.08);
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================
-   BLOCS
-===================================== */
-
-
-.box{
-
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:20px;
-
-
-    margin-bottom:20px;
-
-
-    box-shadow:
-
-    0 8px 25px
-    rgba(0,0,0,.06);
-
-
-}
-
-
-
-
-
-
-
-/* =====================================
-   OPERATIONS
-===================================== */
-
-
-.operation{
-
-
-    display:flex;
-
-    justify-content:space-between;
-
-
-    padding:15px 0;
-
-
-    border-bottom:
-
-    1px solid #e2e8f0;
-
-
-}
-
-
-
-.operation strong{
-
-    color:#0f172a;
-
-}
-
-
-
-.operation span{
-
-    font-weight:bold;
-
-}
-
-
-
-
-
-
-
-
-/* =====================================
-   BOUTONS
-===================================== */
-
-
-#send-transfer{
-
-
-    width:100%;
-
-    padding:15px;
-
-    border-radius:30px;
-
-    background:#15803d;
-
-    color:white;
-
-    font-weight:bold;
-
-
-}
-
-
-
-
-#transfer-result{
-
-    margin-top:15px;
-
-    color:#15803d;
-
-}
-
-
-
-
-
-
-
-
-/* =====================================
-   CARTE BANCAIRE
-===================================== */
-
-
-.bank-card{
-
-
-    width:380px;
-
-    height:220px;
-
-
-    padding:25px;
-
-
-    color:white;
-
-
-    border-radius:25px;
-
-
-    background:
-
-    linear-gradient(
-        135deg,
-        #111827,
-        #15803d
-    );
-
-
-    box-shadow:
-
-    0 20px 40px
-    rgba(0,0,0,.25);
-
-
-}
-
-
-
-.chip{
-
-
-    width:45px;
-
-    height:32px;
-
-    background:#facc15;
-
-    border-radius:8px;
-
-    margin:25px 0;
-
-
-}
-
-
-
-.bank-card h2{
-
-    letter-spacing:3px;
-
-}
-
-
-
-
-
-
-
-
-/* =====================================
-   MENU BAS
-===================================== */
-
-
-nav{
-
-
-    position:fixed;
-
-    bottom:0;
-
-    left:0;
-
-    right:0;
-
-
-    height:75px;
-
-
-    background:white;
-
-
-    display:flex;
-
-    justify-content:space-around;
-
-    align-items:center;
-
-
-    border-top:
-
-    1px solid #e2e8f0;
-
-
-}
-
-
-
-nav button{
-
-
-    background:none;
-
-    color:#475569;
-
-    font-weight:bold;
-
-
-}
-
-
-
-
-
-
-
-/* =====================================
-   MOBILE
-===================================== */
-
-
-@media(max-width:700px){
-
-
-
-.login-box{
-
-    width:90%;
-
-}
-
-
-
-.quick-menu{
-
-    grid-template-columns:
-
-    repeat(2,1fr);
-
-}
-
-
-
-.bank-card{
-
-    width:100%;
-
-}
-
-
-
-main{
-
-    padding:15px;
-
-}
-
-
-
-.balance-card h1{
-
-    font-size:32px;
-
-}
-
-
-}
+* { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+body, html { margin: 0; padding: 0; height: 100%; background-color: #f1f5f9; color: #0f172a; }
+
+/* ENTRÉE CONNEXION */
+.login-wrapper { display: flex; height: 100vh; width: 100vw; }
+.left-banner { flex: 12; background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2)), url('https://unsplash.com') no-repeat center center; background-size: cover; display: flex; align-items: flex-end; padding: 60px; }
+.banner-content h1 { color: white; font-size: 3.5rem; font-weight: 700; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+.right-form-container { flex: 10; display: flex; align-items: center; justify-content: center; background: white; padding: 40px; }
+.form-box { max-width: 380px; width: 100%; }
+.brand-logo-text { font-size: 2.4rem; font-weight: 800; color: #72c146; margin: 0 0 5px 0; }
+.brand-logo-text span { font-size: 0.9rem; text-transform: uppercase; color: #1e3a1e; display: block; margin-top: -5px; letter-spacing: 2px; }
+.form-box h3 { font-size: 1.1rem; color: #64748b; margin-bottom: 30px; font-weight: normal; }
+.input-group { background: #f8fafc; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; border: 1px solid #e2e8f0; }
+.input-group label { display: block; font-size: 0.75rem; color: #64748b; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; }
+.input-group input { border: none; background: transparent; width: 100%; font-size: 1.1rem; outline: none; }
+.remember-me { display: flex; align-items: center; margin: 24px 0; }
+.remember-me input { width: 18px; height: 18px; margin-right: 10px; accent-color: #72c146; }
+.btn-connexion { width: 100%; background-color: #72c146; color: white; border: none; padding: 16px; font-size: 1.05rem; font-weight: bold; border-radius: 30px; cursor: pointer; }
+
+@media (max-width: 900px) { .left-banner { display: none; } .right-form-container { flex: 1; } }
+
+/* APP APPLICATION CONTENEUR MOBILE */
+.app-container { max-width: 450px; margin: 0 auto; height: 100vh; background: #f8fafc; display: flex; flex-direction: column; box-shadow: 0 0 40px rgba(0,0,0,0.08); position: relative; }
+.app-header { background: white; padding: 16px 20px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+.header-user { display: flex; align-items: center; }
+.avatar { width: 42px; height: 42px; background: #f1f5f9; color: #0f172a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; margin-right: 12px; border: 2px solid #cbd5e1; }
+.user-greeting { margin: 0; font-size: 0.75rem; color: #64748b; text-transform: uppercase; }
+.user-status { margin: 0; font-size: 0.95rem; font-weight: bold; color: #0f172a; }
+.btn-logout-icon { background: #fee2e2; color: #ef4444; border: none; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 0.75rem; cursor: pointer; }
+
+/* BANDEAU ROUGE ALERTE CRÉDIBLE */
+.alert-blocked-bar { background-color: #fef2f2; color: #991b1b; padding: 12px 16px; display: flex; align-items: flex-start; font-size: 0.8rem; border-bottom: 1px solid #fca5a5; }
+.alert-blocked-bar .alert-icon { font-size: 1.3rem; margin-right: 10px; }
+.alert-blocked-bar strong { font-size: 0.85rem; display: block; color: #dc2626; }
+.alert-blocked-bar p { margin: 2px 0 0 0; opacity: 0.9; }
+
+.app-main { flex: 1; overflow-y: auto; padding: 16px; padding-bottom: 85px; }
+.app-section { display: none; }
+.active-section { display: block; }
+.section-title { font-size: 1rem; font-weight: 700; color: #475569; margin: 20px 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* TABLEAU DE BORD ACCUEIL RÉEL */
+.premium-card { background: linear-gradient(135deg, #1e293b, #0f172a); color: white; padding: 22px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+.card-header { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; }
+.badge-account { background: #b91c1c; color: white; padding: 3px 8px; border-radius: 10px; font-weight: bold; }
+.premium-card .amount { font-size: 2.1rem; font-weight: bold; margin: 14px 0; letter-spacing: -0.5px; color: #f8fafc; }
+.iban-text { margin: 0; font-size: 0.75rem; opacity: 0.6; font-family: monospace; }
+
+/* CADRE STATISTIQUES ET GRAPHIQUE BARRE */
+.financial-summary-card { background: white; border-radius: 16px; padding: 16px; border: 1px solid #e2e8f0; margin-top: 12px; }
+.financial-summary-card h4 { margin: 0 0 10px 0; font-size: 0.9rem; color: #475569; }
+.chart-simulation-bar { display: flex; height: 24px; border-radius: 6px; overflow: hidden; font-size: 0.7rem; color: white; font-weight: bold; text-align: center; line-height: 24px; }
+.bar-segment.liquid { background: #10b981; }
+.bar-segment.bonds { background: #3b82f6; }
+.financial-stats { margin-top: 12px; font-size: 0.8rem; display: flex; justify-content: space-between; color: #64748b; }
+
+/* LISTE DES COMPTES ET TRANSACTIONS ACCESSIBLES AU CLIC */
+.transactions-container { background: white; border-radius: 16px; padding: 0 14px; border: 1px solid #e2e8f0; }
+.transaction-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #f1f5f9; cursor: pointer; transition: background 0.15s; }
+.transaction-item:hover { background: #f8fafc; }
+.transaction-item:last-child { border-bottom: none; }
+.tx-info { display: flex; flex-direction: column; }
+.tx-title { font-size: 0.9rem; font-weight: 600; color: #1e293b; }
+.tx-date { font-size: 0.75rem; color: #94a3b8; }
+.tx-amount { font-size: 0.9rem; font-weight: bold; }
+.positive { color: #10b981; }
+.negative { color: #ef4444; }
+
+/* COMPORTEMENT JAUGE DE CHARGEMENT */
+.loader-box { background: white; border-radius: 16px; padding: 30px 20px; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.loader-box h4 { color: #1e293b; margin: 0 0 6px 0; font-size: 1rem; }
+.loader-box p { font-size: 0.8rem; color: #64748b; margin: 0 0 20px 0; }
+.progress-bar-bg { background: #e2e8f0; width: 100%; height: 10px; border-radius: 5px; overflow: hidden; margin-bottom: 10px; }
+.progress-bar-fill { background: #72c146; width: 0%; height: 100%; transition: width 0.15s linear; }
+.progress-text { font-weight: bold; color: #1e293b; font-size: 1.1rem; }
+
+/* MODAL INTERFACE FICHE TRANSACTION */
+.modal-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.6); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 100; backdrop-filter: blur(2px); }
+.modal-card { background: white; border-radius: 16px; width: 100%; max-width: 360px; padding: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+.modal-card h3 { margin: 0 0 10px 0; font-size: 1.1rem; color: #0f172a; text-align: center; }
+.modal-body { margin: 15px 0 20px 0; font-size: 0.85rem; color: #334155; line-height: 1.6; }
+.modal-body p { margin: 8px 0; border-bottom: 1px dashed #f1f5f9; padding-bottom: 4px; }
+.modal-body p strong { color: #64748b; font-weight: 600; display: inline-block; width: 110px; }
+
+/* RESTE DU STYLE FORMULAIRES & NAV BAR */
+.form-card { background: white; border-radius: 16px; padding: 16px; border: 1px solid #e2e8f0; }
+.form-field { margin-bottom: 12px; }
+.form-field label { display: block; font-size: 0.75rem; font-weight: bold; color: #64748b; margin-bottom: 4px; }
+.form-field input, .form-field select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; background: #f8fafc; outline: none; }
+.form-field input:focus { border-color: #72c146; background: white; }
+.btn-action { width: 100%; background: #1d7132; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+.app-nav { position: absolute; bottom: 0; left: 0; right: 0; height: 68px; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; align-items: center; }
+.nav-item { background: none; border: none; display: flex; flex-direction: column; align-items: center; cursor: pointer; color: #64748b; width: 33%; }
+.nav-icon { font-size: 1.25rem; }
+.nav-label { font-size: 0.7rem; font-weight: bold; }
+.active-nav { color: #1d7132; }
