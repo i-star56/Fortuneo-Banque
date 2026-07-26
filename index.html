@@ -3,31 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexagone Finance - Espace Client</title>
+    <title>HEXAGONE FINANCE - Espace Client Sécurisé</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-blue-theme">
+<body class="bg-bank-theme">
 
-    <!-- ECRAN DE CONNEXION -->
+    <!-- ECRAN DE CONNEXION SÉCURISÉ -->
     <div class="login-wrapper" id="login-screen">
         <div class="left-banner">
             <div class="banner-content">
-                <h1>Pilotez vos<br>finances en toute<br>simplicité.</h1>
+                <h1 class="brand-logo-main">HEXAGONE <span>FINANCE</span></h1>
+                <p class="tagline">Votre banque privée au quotidien. Sécurité, rigueur et performance.</p>
             </div>
         </div>
         <div class="right-form-container">
             <div class="form-box">
-                <h2 class="brand-logo-text">hexagone <span>finance</span></h2>
-                <h3>Espace de Gestion de Compte</h3>
+                <h1 class="brand-logo-form">HEXAGONE <span>FINANCE</span></h1>
+                <h3 class="login-title">Connexion à votre Espace Client</h3>
+                
                 <div class="input-group">
-                    <label for="username">Identifiant</label>
-                    <input type="text" id="username" placeholder="450893127">
+                    <label for="username">Identifiant Client</label>
+                    <input type="text" id="username" placeholder="Saisissez votre identifiant" value="" autocomplete="off">
                 </div>
                 <div class="input-group">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" id="password" placeholder="••••••••••••">
+                    <label for="password">Code Secret / Mot de passe</label>
+                    <input type="password" id="password" placeholder="••••••••••••" value="" autocomplete="off">
                 </div>
-                <button class="btn-connexion" onclick="login()">Se Connecter</button>
+                <button class="btn-connexion" onclick="login()">SE CONNECTER</button>
+                <div class="security-info">
+                    <span>🔒 Connexion chiffrée SSL 256-bit</span>
+                </div>
             </div>
         </div>
     </div>
@@ -35,11 +40,14 @@
     <!-- APPLICATION PRINCIPALE -->
     <div class="app-container" id="app-screen" style="display: none;">
         
-        <!-- HEADER CLIQUABLE -->
+        <!-- HEADER AVEC LOGO ET ESPACE CLIENT CLIQUABLE -->
         <header class="app-header">
-            <div class="header-user" onclick="showSection('settings-section')" title="Accéder au profil">
+            <div class="header-left">
+                <h1 class="brand-logo-header">HEXAGONE <span>FINANCE</span></h1>
+            </div>
+            <div class="header-user" onclick="toggleQuickMenu()" title="Accéder à la gestion du compte">
                 <div class="avatar" id="header-avatar">EG</div>
-                <div>
+                <div class="user-info-text">
                     <p class="user-greeting">ESPACE CLIENT ⚙️</p>
                     <p class="user-status" id="header-username">M. Edmond Garnier</p>
                 </div>
@@ -47,20 +55,57 @@
             <button onclick="logout()" class="btn-logout-icon">Déconnexion</button>
         </header>
 
+        <!-- MENU RAPIDE ESPACE CLIENT (MODAL / OVERLAY) -->
+        <div id="quick-menu-modal" class="quick-menu-overlay" style="display: none;">
+            <div class="quick-menu-content">
+                <div class="quick-menu-header">
+                    <h3>GESTION D'ESPACE CLIENT</h3>
+                    <button class="btn-close-quick" onclick="toggleQuickMenu()">✕</button>
+                </div>
+                <div class="quick-menu-grid">
+                    <div class="quick-item" onclick="showSection('home-section'); toggleQuickMenu();">
+                        <span class="q-icon">📊</span>
+                        <strong>Gestion du Compte</strong>
+                        <p>Synthèse, solde et transactions</p>
+                    </div>
+                    <div class="quick-item" onclick="showSection('card-section'); toggleQuickMenu();">
+                        <span class="q-icon">💳</span>
+                        <strong>Gestion des Cartes</strong>
+                        <p>Opposition, plafonds retrait & paiement</p>
+                    </div>
+                    <div class="quick-item" onclick="openEdocuments(); toggleQuickMenu();">
+                        <span class="q-icon">📄</span>
+                        <strong>Relevés de Compte</strong>
+                        <p>Archives e-documents mensuels PDF</p>
+                    </div>
+                    <div class="quick-item" onclick="openMessaging(); toggleQuickMenu();">
+                        <span class="q-icon">💬</span>
+                        <strong>Messagerie Sécurisée</strong>
+                        <p>Contact direct avec le conseiller attitré</p>
+                    </div>
+                    <div class="quick-item" onclick="showSection('settings-section'); toggleQuickMenu();">
+                        <span class="q-icon">⚙️</span>
+                        <strong>Paramètres Personnels</strong>
+                        <p>Mot de passe, téléphone et adresse</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <main class="app-main">
 
-            <!-- BANNIÈRE COMPTE BLOQUÉ -->
+            <!-- BANNIÈRE ALERTE COMPTE -->
             <div class="alert-blocked-banner">
                 <span class="icon">🔒</span>
                 <div>
                     <strong>Statut du compte : Restreint / Bloqué</strong>
-                    <p>Consultation et saisie de virements autorisées sous réserve de validation.</p>
+                    <p>Consultation et saisie de virements autorisées sous réserve de validation administrative.</p>
                 </div>
             </div>
 
-            <!-- COMPTES & HISTORIQUE -->
+            <!-- SECTION 1 : COMPTES -->
             <div id="home-section" class="app-section active-section">
-                <div class="section-title">Synthèse du Compte</div>
+                <div class="section-title">Synthèse Générale du Compte</div>
                 
                 <div class="premium-card clickable-card" onclick="openAccountDetails()">
                     <div class="card-header">
@@ -70,7 +115,7 @@
                     <div class="amount" id="balance">7 585 024,00 €</div>
                     <div class="card-footer-info">
                         <span class="iban-text">IBAN : FR76 3000 4000 8842...</span>
-                        <span class="click-hint">Voir les détails 🔍</span>
+                        <span class="click-hint">Voir détails & RIB 🔍</span>
                     </div>
                 </div>
 
@@ -85,11 +130,23 @@
                     </div>
                 </div>
 
+                <!-- RELEVÉS E-DOCUMENTS ET MESSAGERIE DANS COMPTES -->
+                <div class="action-banners-grid">
+                    <div class="banner-box" onclick="openEdocuments()">
+                        <span>📂 Archives Relevés PDF</span>
+                        <small>Télécharger vos e-documents mensuels</small>
+                    </div>
+                    <div class="banner-box" onclick="openMessaging()">
+                        <span>💬 Conseiller Attitré</span>
+                        <small>M. Jean-Marc Valette (En ligne)</small>
+                    </div>
+                </div>
+
                 <div class="section-title">Historique des Transactions (2022 - Déc 2025)</div>
                 <div class="filter-box">
-                    <input type="text" id="search-input" placeholder="🔍 Rechercher une transaction..." oninput="filterTransactions()">
+                    <input type="text" id="search-input" placeholder="🔍 Rechercher un libellé, date..." oninput="filterTransactions()">
                     <select id="filter-type" onchange="filterTransactions()">
-                        <option value="all">Toutes</option>
+                        <option value="all">Toutes les opérations</option>
                         <option value="positive">Crédits (+)</option>
                         <option value="negative">Débits (-)</option>
                     </select>
@@ -98,76 +155,134 @@
                 <div class="transactions-container" id="transactions-list"></div>
             </div>
 
-            <!-- VIREMENTS -->
+            <!-- SECTION 2 : VIREMENTS -->
             <div id="transfer-section" class="app-section">
-                <div class="section-title">Émettre un Virement</div>
+                <div class="section-title">Émettre un Virement Sécurisé</div>
+                
+                <!-- SELECTION TYPE DE VIREMENT -->
+                <div class="transfer-types-grid">
+                    <button class="type-btn active" id="type-immediat" onclick="selectTransferType('immediat')">
+                        <strong>Virement Immédiat</strong>
+                        <small>Exécution sous 24h</small>
+                    </button>
+                    <button class="type-btn" id="type-instantane" onclick="selectTransferType('instantane')">
+                        <strong>Virement Instantané</strong>
+                        <small>Exécution en 10 sec</small>
+                    </button>
+                    <button class="type-btn" id="type-differe" onclick="selectTransferType('differe')">
+                        <strong>Virement Différé</strong>
+                        <small>Programmer une date</small>
+                    </button>
+                    <button class="type-btn" id="type-permanent" onclick="selectTransferType('permanent')">
+                        <strong>Virement Permanent</strong>
+                        <small>Répétition mensuelle</small>
+                    </button>
+                </div>
+
                 <div class="form-card" id="form-container">
                     <div class="form-field">
                         <label>Compte Débiteur</label>
                         <select disabled><option>Compte Principal (*8842) - Solde : 7 585 024,00 €</option></select>
                     </div>
+
+                    <!-- SELECTION BÉNÉFICIAIRE ENREGISTRÉ -->
+                    <div class="form-field">
+                        <label>Sélectionner un Bénéficiaire Enregistré</label>
+                        <select id="saved-beneficiary" onchange="applySavedBeneficiary()">
+                            <option value="">-- Choisir dans la liste enregistrée --</option>
+                            <option value="Jean Dupont|FR76 3000 1000 1234 5678 901|Jean Dupont (Notaire)">Jean Dupont - Notaire</option>
+                            <option value="Marie Curie|FR76 3000 2000 9876 5432 109|Cabinet Marie Curie">Marie Curie - Conseil</option>
+                            <option value="Thomas Dubois|FR76 1000 5000 4444 3333 221|Thomas Dubois">Thomas Dubois - Particulier</option>
+                            <option value="SCI Immobilier Haussmann|FR76 4000 8000 1122 3344 556|SCI Haussmann">SCI Immobilier Haussmann</option>
+                        </select>
+                    </div>
+
                     <div class="form-field">
                         <label>Nom du Bénéficiaire</label>
                         <input type="text" id="beneficiary" placeholder="Ex: Jean Dupont">
                     </div>
                     <div class="form-field">
                         <label>IBAN du Bénéficiaire</label>
-                        <input type="text" id="iban-input" placeholder="FR76 0000 0000 0000 0000 0000 000">
+                        <input type="text" id="iban-input" placeholder="FR76 0000 0000 0000 0000 000">
+                    </div>
+                    <div class="form-field" id="date-execution-field" style="display: none;">
+                        <label>Date d'exécution différée</label>
+                        <input type="date" id="execution-date">
                     </div>
                     <div class="form-field">
                         <label>Montant (€)</label>
                         <input type="number" id="amount-input" placeholder="0.00">
                     </div>
                     <div class="form-field">
-                        <label>Motif du transfert</label>
+                        <label>Motif / Libellé du transfert</label>
                         <input type="text" id="reason-input" placeholder="Ex: Règlement prestation / Achat">
                     </div>
-                    <button class="btn-action" onclick="startTransferAnimation()">Exécuter le Transfert</button>
+                    <button class="btn-action" onclick="startTransferAnimation()">Valider et Exécuter le Transfert</button>
                 </div>
 
                 <div id="loader-container" class="loader-box" style="display: none;">
-                    <h4>TRAITEMENT EN COURS...</h4>
-                    <p>Validation sécurisée du virement</p>
+                    <h4>TRAITEMENT SÉCURISÉ EN COURS...</h4>
+                    <p>Validation du virement en cours auprès du serveur central</p>
                     <div class="progress-bar-bg"><div id="progress-bar-fill" class="progress-bar-fill"></div></div>
                     <div id="progress-text" class="progress-text">0%</div>
                 </div>
             </div>
 
-            <!-- ÉPARGNE COMPLÈTE -->
+            <!-- SECTION 3 : ÉPARGNE -->
             <div id="savings-section" class="app-section">
-                <div class="section-title">Gestion des Comptes d'Épargne</div>
+                <div class="section-title">Vue d'ensemble de l'Épargne</div>
+                
+                <!-- SOLDE GLOBAL ET INTÉRÊTS -->
+                <div class="savings-summary-box">
+                    <div class="sum-item">
+                        <span>Solde Global Épargne</span>
+                        <strong id="total-savings-balance">173 650,00 €</strong>
+                    </div>
+                    <div class="sum-item">
+                        <span>Intérêts Acquis (2025)</span>
+                        <strong class="text-green">+4 820,50 €</strong>
+                    </div>
+                    <div class="sum-item">
+                        <span>Taux Moyen de Rémunération</span>
+                        <strong>3.10% / an</strong>
+                    </div>
+                </div>
+
+                <div class="section-title">Opérations Courantes Épargne</div>
+                <div class="savings-actions-grid">
+                    <button class="btn-savings-op" onclick="depositSavings(1)">📥 Alimenter l'Épargne</button>
+                    <button class="btn-savings-op" onclick="withdrawSavings(1)">📤 Récupérer des Fonds</button>
+                    <button class="btn-savings-op" onclick="configureAutoDeposit()">🔄 Versements Programmés</button>
+                </div>
+
+                <div class="section-title">Produits & Livrets Réglementés</div>
                 
                 <div class="savings-card-item">
                     <div class="savings-info">
-                        <h4>Livret Épargne Haute Performance</h4>
-                        <p class="savings-rate">Taux d'intérêt : 3.50% / an</p>
+                        <h4>Livret A / Épargne Haute Performance</h4>
+                        <p class="savings-rate">Taux : 3.50% | Plafond : 22 950 € (Atteint)</p>
                         <span class="savings-balance" id="savings-balance-1">125 400,00 €</span>
                     </div>
-                    <button class="btn-sm-action" onclick="depositSavings(1)">Alimenter</button>
+                    <button class="btn-sm-action" onclick="depositSavings(1)">Gérer</button>
                 </div>
 
                 <div class="savings-card-item">
                     <div class="savings-info">
                         <h4>Compte Épargne Logement (CEL)</h4>
-                        <p class="savings-rate">Taux d'intérêt : 2.00% / an</p>
+                        <p class="savings-rate">Taux : 2.00% | Plafond : 15 300 €</p>
                         <span class="savings-balance" id="savings-balance-2">48 250,00 €</span>
                     </div>
-                    <button class="btn-sm-action" onclick="depositSavings(2)">Alimenter</button>
-                </div>
-
-                <div class="form-card" style="margin-top: 15px;">
-                    <h4>Progression globale de l'épargne</h4>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 78%;"></div></div>
-                    <p style="font-size: 0.75rem; color: #64748b; margin-top: 6px;">Objectif annuel atteint à 78% (Année 2025)</p>
+                    <button class="btn-sm-action" onclick="depositSavings(2)">Gérer</button>
                 </div>
             </div>
 
-            <!-- CARTE BANCAIRE VISA -->
+            <!-- SECTION 4 : CARTE BANCAIRE -->
             <div id="card-section" class="app-section">
-                <div class="section-title">Carte Bancaire Visa</div>
+                <div class="section-title">Carte Bancaire Visa Premier</div>
+                
                 <div class="visa-card-ui">
                     <div class="cc-header">
-                        <span class="cc-brand">HEXAGONE</span>
+                        <span class="cc-brand">HEXAGONE FINANCE</span>
                         <span class="visa-logo">VISA</span>
                     </div>
                     <div class="cc-chip-container">
@@ -187,80 +302,110 @@
                     </div>
                 </div>
 
+                <!-- SUIVI ET CAPACITÉS -->
+                <div class="section-title">Suivi des Capacité & Plafonds</div>
                 <div class="card-status-box">
-                    <div class="status-row"><span>Statut Carte</span><span class="status-badge active">ACTIVE</span></div>
-                    <div class="status-row"><span>Plafond Paiement</span><strong>20 000 € / mois</strong></div>
-                    <div class="status-row"><span>Plafond Retrait</span><strong>3 000 € / semaine</strong></div>
+                    <div class="status-row"><span>Encours Débit Mensuel</span><strong>1 724,20 € / 20 000 €</strong></div>
+                    <div class="status-row"><span>Plafond Paiement (30 jours)</span><strong>20 000 €</strong> <button class="btn-xs" onclick="modPlafond('paiement')">Modifier</button></div>
+                    <div class="status-row"><span>Plafond Retrait (7 jours)</span><strong>3 000 €</strong> <button class="btn-xs" onclick="modPlafond('retrait')">Modifier</button></div>
                 </div>
 
-                <div class="section-title">Derniers achats par Carte</div>
-                <div class="transactions-container">
-                    <div class="transaction-item">
-                        <div class="tx-info"><span class="tx-title">Station TotalEnergies</span><span class="tx-date">14/12/2025</span></div>
-                        <span class="tx-amount negative">-85,20 €</span>
+                <!-- PARAMÈTRES DE SÉCURITÉ -->
+                <div class="section-title">Paramètres de Sécurité Carte</div>
+                <div class="form-card">
+                    <div class="clickable-setting-row" onclick="toggleCheckbox('card-contactless')">
+                        <span>Paiement Sans Contact</span>
+                        <input type="checkbox" id="card-contactless" checked onclick="event.stopPropagation()">
                     </div>
-                    <div class="transaction-item">
-                        <div class="tx-info"><span class="tx-title">Apple Store Paris</span><span class="tx-date">10/12/2025</span></div>
-                        <span class="tx-amount negative">-1 299,00 €</span>
+                    <div class="clickable-setting-row" onclick="toggleCheckbox('card-internet')">
+                        <span>Paiements sur Internet</span>
+                        <input type="checkbox" id="card-internet" checked onclick="event.stopPropagation()">
                     </div>
-                    <div class="transaction-item">
-                        <div class="tx-info"><span class="tx-title">Restaurant Le Gabriel</span><span class="tx-date">02/12/2025</span></div>
-                        <span class="tx-amount negative">-340,00 €</span>
+                    <div class="clickable-setting-row" onclick="toggleCheckbox('card-foreign')">
+                        <span>Paiements et Retraits à l'Étranger</span>
+                        <input type="checkbox" id="card-foreign" checked onclick="event.stopPropagation()">
                     </div>
+                </div>
+
+                <!-- URGENCES ET SERVICES -->
+                <div class="section-title">Urgences & Services Carte</div>
+                <div class="emergency-grid">
+                    <button class="btn-danger-outline" onclick="tempLockCard()">🔒 Verrouillage Temporaire</button>
+                    <button class="btn-danger-solid" onclick="oppositionCard()">🛑 Mise en Opposition</button>
+                    <button class="btn-secondary-action" onclick="showPinCode()">👁️ Visualiser le Code PIN</button>
                 </div>
             </div>
 
-            <!-- PROFIL ET PARAMÈTRES (SANS EMAIL) -->
+            <!-- SECTION 5 : PROFIL & PARAMÈTRES -->
             <div id="settings-section" class="app-section">
-                <div class="section-title">Profil & Paramètres du Compte</div>
+                <div class="section-title">1. Sécurité & Authentification</div>
                 <div class="form-card">
-                    <h4>Informations Personnelles</h4>
-                    <div class="form-field">
-                        <label>Nom & Prénom</label>
-                        <input type="text" id="user-name-input" value="Edmond Garnier">
+                    <div class="clickable-setting-row" onclick="changePasswordModal()">
+                        <span>Changement du mot de passe / Code d'accès</span>
+                        <span>🔑 ></span>
                     </div>
-                    <div class="form-field">
-                        <label>Numéro de Téléphone</label>
-                        <input type="tel" id="user-phone-input" value="+33 6 12 34 56 78">
+                    <div class="clickable-setting-row" onclick="toggleCheckbox('bio-toggle')">
+                        <span>Biométrie (Empreinte digitale / FaceID)</span>
+                        <input type="checkbox" id="bio-toggle" checked onclick="event.stopPropagation()">
                     </div>
-                    <div class="form-field">
-                        <label>Adresse Postale</label>
+                    <div class="clickable-setting-row" onclick="alert('Smartphone de confiance actif : iPhone 15 Pro (Dernière validation aujourd\'hui)')">
+                        <span>Appareil de Confiance (Validation 2FA)</span>
+                        <span class="badge-active">Actif</span>
+                    </div>
+                </div>
+
+                <div class="section-title">2. Données Personnelles & Coordonnées</div>
+                <div class="form-card">
+                    <div class="clickable-setting-row" onclick="viewCivilIdentity()">
+                        <span>État Civil, Situation Familiale & N° Fiscal</span>
+                        <span>👤 ></span>
+                    </div>
+                    <div class="form-field" style="margin-top: 10px;">
+                        <label>Adresse Postale Domicile</label>
                         <input type="text" id="user-address-input" value="12 Boulevard Haussmann, 75009 Paris">
+                    </div>
+                    <div class="form-field">
+                        <label>Mise à jour d'adresse (Justificatif < 3 mois obligatoire)</label>
+                        <input type="file" id="proof-address-file" accept=".pdf,.png,.jpg">
+                    </div>
+                    <div class="form-field">
+                        <label>Adresse Email Client</label>
+                        <input type="email" id="user-email-input" value="edmond.garnier@client-hexagone.fr">
+                    </div>
+                    <div class="form-field">
+                        <label>Numéro de Téléphone Sécurité</label>
+                        <input type="tel" id="user-phone-input" value="+33 6 12 34 56 78">
                     </div>
                     <button class="btn-action" onclick="updateProfile()">Enregistrer les modifications</button>
                 </div>
 
-                <div class="form-card" style="margin-top: 14px;">
-                    <h4>Sécurité & Préférences (Cliquables)</h4>
-                    <div class="clickable-setting-row" onclick="toggleCheckbox('2fa-toggle')">
-                        <span>Double Authentification (2FA) par SMS</span>
-                        <input type="checkbox" id="2fa-toggle" checked onclick="event.stopPropagation()">
+                <div class="section-title">3. Préférences & Documents Légaux</div>
+                <div class="form-card">
+                    <div class="clickable-setting-row" onclick="toggleCheckbox('notif-sms')">
+                        <span>Alertes SMS Sécurité & Virements</span>
+                        <input type="checkbox" id="notif-sms" checked onclick="event.stopPropagation()">
                     </div>
-                    <div class="clickable-setting-row" onclick="toggleCheckbox('sms-toggle')">
-                        <span>Alertes SMS pour virements entrant/sortant</span>
-                        <input type="checkbox" id="sms-toggle" checked onclick="event.stopPropagation()">
+                    <div class="clickable-setting-row" onclick="toggleCheckbox('notif-email')">
+                        <span>Notifications Email Relevés & Solde</span>
+                        <input type="checkbox" id="notif-email" checked onclick="event.stopPropagation()">
                     </div>
-                    <div class="clickable-setting-row" onclick="toggleCheckbox('dark-toggle')">
-                        <span>Mode Sombre / Thème Sombre</span>
-                        <input type="checkbox" id="dark-toggle" onchange="toggleDarkMode()" onclick="event.stopPropagation()">
-                    </div>
-                    <div class="clickable-setting-row" onclick="alert('Session sécurisée rafraîchie.')">
-                        <span>Réinitialiser la clé de sécurité</span>
-                        <span>🔑</span>
+                    <div class="clickable-setting-row" onclick="alert('Consentements RGPD à jour. Aucune donnée transmise à des tiers.')">
+                        <span>Gestion des Consentements RGPD</span>
+                        <span>📄 ></span>
                     </div>
                 </div>
             </div>
         </main>
 
-        <!-- MODAL DÉTAILS COMPTE -->
+        <!-- MODAL CONSULTATION DETAILS COMPTE -->
         <div class="modal-overlay" id="account-modal" style="display: none;">
             <div class="modal-card">
                 <h3>Informations du Compte</h3>
                 <div class="modal-body">
                     <p><strong>Titulaire :</strong> <span id="acc-modal-owner">Edmond Garnier</span></p>
-                    <p><strong>Type :</strong> Compte de Gestion Privée</p>
+                    <p><strong>Type :</strong> Compte Banque Privée Hexagone</p>
                     <p><strong>Statut :</strong> <span style="color:#ef4444; font-weight:bold;">Bloqué / Sous réserve</span></p>
-                    <p><strong>Solde Total :</strong> <span id="acc-modal-balance">7 585 024,00 €</span></p>
+                    <p><strong>Solde Disponibilité :</strong> <span id="acc-modal-balance">7 585 024,00 €</span></p>
                     <p><strong>IBAN :</strong> FR76 3000 4000 8842 1234 5678 901</p>
                     <p><strong>BIC / SWIFT :</strong> HEXAFRPPXXX</p>
                 </div>
@@ -268,7 +413,7 @@
             </div>
         </div>
 
-        <!-- MODAL CONSULTATION TRANSACTION -->
+        <!-- MODAL TRANSACTION -->
         <div class="modal-overlay" id="tx-modal" style="display: none;">
             <div class="modal-card">
                 <h3 id="modal-title">Détails de l'opération</h3>
@@ -284,7 +429,7 @@
             </div>
         </div>
 
-        <!-- BARRE DE NAVIGATION -->
+        <!-- BARRE DE NAVIGATION FIXE -->
         <nav class="app-nav">
             <button class="nav-item active-nav" onclick="showSection('home-section')"><span class="nav-icon">📊</span><span class="nav-label">Comptes</span></button>
             <button class="nav-item" onclick="showSection('transfer-section')"><span class="nav-icon">💸</span><span class="nav-label">Virement</span></button>
