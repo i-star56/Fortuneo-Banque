@@ -1,14 +1,16 @@
 let currentBalance = 7585024.00;
 let savings1 = 125400.00;
 let savings2 = 48250.00;
+let selectedTransferType = 'immediat';
 
 let userProfile = {
     name: "Edmond Garnier",
+    email: "edmond.garnier@client-hexagone.fr",
     phone: "+33 6 12 34 56 78",
     address: "12 Boulevard Haussmann, 75009 Paris"
 };
 
-// GÉNÉRATION D'UN HISTORIQUE DE PLUS DE 40 TRANSACTIONS DE 2022 À DÉCEMBRE 2025
+// GÉNÉRATION DE L'HISTORIQUE DE TRANSACTIONS
 const titlesIn = ["Virement reçu", "Incrémentation d'actifs", "Cession d'actions", "Dividendes Euronext", "Règlement Partenaire", "Remboursement Fisc", "Avoir Banque"];
 const titlesOut = ["Achat Équipement", "Honoraire Conseil", "Virement Sortant", "Paiement Fournisseur", "Frais de Gestion", "Prélèvement Assurance", "Règlement Facture"];
 
@@ -16,13 +18,10 @@ let transactions = [];
 
 function generateTransactions() {
     let idCounter = 1000;
-    // Période : Janvier 2022 à Décembre 2025
     const years = [2022, 2023, 2024, 2025];
     
     years.forEach(year => {
-        const maxMonth = (year === 2025) ? 12 : 12;
-        for (let month = 1; month <= maxMonth; month++) {
-            // 1 à 2 transactions par mois
+        for (let month = 1; month <= 12; month++) {
             let numTx = (year === 2025 && month === 12) ? 3 : 1; 
             for (let i = 0; i < numTx; i++) {
                 let day = Math.floor(Math.random() * 25) + 1;
@@ -39,14 +38,13 @@ function generateTransactions() {
                     title: title,
                     amount: amount,
                     date: dateStr,
-                    reason: `Opération enregistrée sous la référence #HEXA-${idCounter}`,
+                    reason: `Opération comptabilisée sous référence #HEXA-${idCounter}`,
                     type: isPositive ? "positive" : "negative"
                 });
             }
         }
     });
 
-    // Inverser pour avoir les plus récents en premier (Fin Décembre 2025 en haut)
     transactions.reverse();
 }
 
@@ -79,27 +77,45 @@ function showSection(sectionId) {
     }
 }
 
+function toggleQuickMenu() {
+    const qm = document.getElementById('quick-menu-modal');
+    qm.style.display = (qm.style.display === 'none' || qm.style.display === '') ? 'flex' : 'none';
+}
+
+function selectTransferType(type) {
+    selectedTransferType = type;
+    document.querySelectorAll('.type-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(`type-${type}`).classList.add('active');
+
+    const dateField = document.getElementById('date-execution-field');
+    if (type === 'differe') {
+        dateField.style.display = 'block';
+    } else {
+        dateField.style.display = 'none';
+    }
+}
+
+function applySavedBeneficiary() {
+    const val = document.getElementById('saved-beneficiary').value;
+    if (val) {
+        const parts = val.split('|');
+        document.getElementById('beneficiary').value = parts[0];
+        document.getElementById('iban-input').value = parts[1];
+        document.getElementById('reason-input').value = `Virement vers ${parts[2]}`;
+    }
+}
+
 function toggleCheckbox(id) {
     const cb = document.getElementById(id);
     if (cb) cb.checked = !cb.checked;
 }
 
 function updateProfile() {
-    userProfile.name = document.getElementById('user-name-input').value;
+    userProfile.name = document.getElementById('user-email-input').value;
     userProfile.phone = document.getElementById('user-phone-input').value;
+    userProfile.address = document.getElementById('user-address-input').value;
 
-    document.getElementById('header-username').innerText = `M. ${userProfile.name}`;
-    document.getElementById('card-holder-name').innerText = userProfile.name.toUpperCase();
-    document.getElementById('acc-modal-owner').innerText = userProfile.name;
-
-    const initials = userProfile.name.split(' ').map(n => n[0]).join('').toUpperCase();
-    document.getElementById('header-avatar').innerText = initials;
-
-    alert("Modifications enregistrées !");
-}
-
-function toggleDarkMode() {
-    document.body.classList.toggle('dark-theme');
+    alert("Données personnelles mises à jour avec succès !");
 }
 
 function openAccountDetails() {
@@ -176,7 +192,7 @@ function startTransferAnimation() {
 
                 transactions.unshift({
                     ref: `TX-2025-${Math.floor(Math.random()*9000)+1000}`,
-                    title: `Virement vers ${beneficiary}`,
+                    title: `Virement [${selectedTransferType.toUpperCase()}] vers ${beneficiary}`,
                     amount: -amount,
                     date: "31/12/2025",
                     reason: reason,
@@ -185,7 +201,7 @@ function startTransferAnimation() {
 
                 filterTransactions();
 
-                alert(`✅ Virement de ${amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })} enregistré.`);
+                alert(`✅ Virement (${selectedTransferType}) de ${amount.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })} exécuté.`);
 
                 document.getElementById('beneficiary').value = '';
                 document.getElementById('iban-input').value = '';
@@ -200,7 +216,7 @@ function startTransferAnimation() {
 }
 
 function depositSavings(id) {
-    let amount = prompt("Entrez le montant à verser depuis votre compte principal :");
+    let amount = prompt("Entrez le montant à verser sur ce compte d'épargne :");
     amount = parseFloat(amount);
     if (!isNaN(amount) && amount > 0) {
         if (amount > currentBalance) {
@@ -217,8 +233,78 @@ function depositSavings(id) {
             savings2 += amount;
             document.getElementById('savings-balance-2').innerText = savings2.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
         }
-        alert("Transfert vers le compte d'épargne effectué avec succès !");
+        updateTotalSavings();
+        alert("Règlement/Transfert vers l'épargne effectué avec succès !");
     }
+}
+
+function withdrawSavings(id) {
+    let amount = prompt("Entrez le montant à récupérer vers votre compte principal :");
+    amount = parseFloat(amount);
+    if (!isNaN(amount) && amount > 0) {
+        let currentTarget = (id === 1) ? savings1 : savings2;
+        if (amount > currentTarget) {
+            alert("Solde d'épargne insuffisant.");
+            return;
+        }
+        currentBalance += amount;
+        document.getElementById('balance').innerText = currentBalance.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+
+        if (id === 1) {
+            savings1 -= amount;
+            document.getElementById('savings-balance-1').innerText = savings1.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+        } else {
+            savings2 -= amount;
+            document.getElementById('savings-balance-2').innerText = savings2.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+        }
+        updateTotalSavings();
+        alert("Fonds rapatriés sur votre compte principal !");
+    }
+}
+
+function configureAutoDeposit() {
+    alert("Module de versements programmés : Vous pouvez mettre en place un versement mensuel automatique de 500 € vers votre Livret A.");
+}
+
+function updateTotalSavings() {
+    const total = savings1 + savings2;
+    document.getElementById('total-savings-balance').innerText = total.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+}
+
+function openEdocuments() {
+    alert("📄 E-DOCUMENTS MENSUELS PDF :\n\n- Relevé de compte Décembre 2025 (PDF)\n- Relevé de compte Novembre 2025 (PDF)\n- Relevé Annuel d'Opérations 2025 (PDF)");
+}
+
+function openMessaging() {
+    alert("💬 MESSAGERIE SÉCURISÉE BANQUE PRIVÉE :\n\nVotre conseiller dédié : M. Jean-Marc Valette\nStatut : En ligne\n\n[Dernier message] : 'Bonjour M. Garnier, je reste à votre disposition.'");
+}
+
+function modPlafond(type) {
+    let newCap = prompt(`Nouveau plafond de ${type} souhaité (€) :`);
+    if (newCap) alert(`Votre demande de modification de plafond de ${type} (${newCap} €) a été transmise à votre conseiller.`);
+}
+
+function tempLockCard() {
+    alert("🔒 Votre carte bancaire a été verrouillée temporairement. Vous pouvez la déverrouiller à tout moment.");
+}
+
+function oppositionCard() {
+    if (confirm("🛑 Êtes-vous sûr de vouloir mettre votre carte en opposition définitive ? Un remplacement sera commandé.")) {
+        alert("Opposition enregistrée. Votre carte est bloquée définitivement.");
+    }
+}
+
+function showPinCode() {
+    alert("🔑 Votre code PIN confidentiel est : 4 8 2 9 (Ne le communiquez à personne)");
+}
+
+function changePasswordModal() {
+    prompt("Entrez votre nouveau mot de passe / code secret à 6 chiffres :");
+    alert("Mot de passe mis à jour avec succès.");
+}
+
+function viewCivilIdentity() {
+    alert("👤 ÉTAT CIVIL & IDENTITÉ :\n\nNom : GARNIER\nPrénom : Edmond\nDate de naissance : 14/08/1975\nSituation : Marié\nN° Fiscal : 1849 2039 4829");
 }
 
 function openDetails(ref, title, amount, date, reason) {
@@ -239,7 +325,7 @@ if (sessionStorage.getItem('isLoggedIn') === 'true') {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('app-screen').style.display = 'flex';
     document.getElementById('balance').innerText = currentBalance.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
-    renderTransactions(transactions);
+    filterTransactions();
 } else {
     document.getElementById('login-screen').style.display = 'flex';
     document.getElementById('app-screen').style.display = 'none';
