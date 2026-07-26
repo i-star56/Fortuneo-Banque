@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexagone Finance - Espace Privé Haute Richesse</title>
+    <title>Hexagone Finance - Portfolio & Épargne</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,16 +12,16 @@
     <div class="login-wrapper" id="login-screen">
         <div class="left-banner">
             <div class="banner-content">
-                <h1>Bienvenue<br>dans votre<br>espace client.</h1>
+                <h1>Bienvenue<br>dans votre<br>espace gestion.</h1>
             </div>
         </div>
         <div class="right-form-container">
             <div class="form-box">
                 <h2 class="brand-logo-text">hexagone <span>finance</span></h2>
-                <h3>Saisissez votre identifiant et mot de passe</h3>
+                <h3>Espace de Simulation & Gestion d'Actifs</h3>
                 <div class="input-group">
                     <label for="username">Identifiant</label>
-                    <input type="text" id="username" placeholder="000000" autocomplete="off">
+                    <input type="text" id="username" placeholder="Demo : 450893127" autocomplete="off">
                 </div>
                 <div class="input-group">
                     <label for="password">Mot de passe</label>
@@ -42,20 +42,12 @@
             <div class="header-user">
                 <div class="avatar">EG</div>
                 <div>
-                    <p class="user-greeting">Espace Gestion Privée</p>
+                    <p class="user-greeting">Gestion de Portefeuille</p>
                     <p class="user-status">M. Edmond Garnier</p>
                 </div>
             </div>
             <button onclick="logout()" class="btn-logout-icon">Déconnexion</button>
         </header>
-
-        <div class="alert-blocked-bar">
-            <span class="alert-icon">🚨</span>
-            <div>
-                <strong>COMPTE SOUS COUP DE RESTRICTION ADMINISTRATIVE</strong>
-                <p>Certaines fonctionnalités de transfert et de retrait sont limitées.</p>
-            </div>
-        </div>
 
         <main class="app-main">
             <!-- ACCUEIL -->
@@ -63,38 +55,38 @@
                 <div class="section-title">Vos Comptes & Épargne</div>
                 <div class="premium-card">
                     <div class="card-header">
-                        <span class="badge-account">Compte Courant d'Excellence</span>
-                        <span class="account-number">N° FR76 1180...094</span>
+                        <span class="badge-account">Portefeuille d'Investissement</span>
+                        <span class="account-number">N° HEXA-8842</span>
                     </div>
                     <div class="amount" id="balance">7 585 024,00 €</div>
-                    <p class="iban-text">IBAN: FR76 1180 6000 2001 9845 3321 094</p>
+                    <p class="iban-text">Compte de Démonstration Unifié</p>
                 </div>
 
                 <!-- Répartition graphique simulée -->
                 <div class="financial-summary-card">
-                    <h4>Répartition de vos actifs</h4>
+                    <h4>Répartition des actifs</h4>
                     <div class="chart-simulation-bar">
                         <div class="bar-segment liquid" style="width: 85%;">Liquidités (85%)</div>
-                        <div class="bar-segment bonds" style="width: 15%;">Titres (15%)</div>
+                        <div class="bar-segment bonds" style="width: 15%;">Obligations (15%)</div>
                     </div>
                     <div class="financial-stats">
-                        <div><span>Conseiller Privé :</span> <strong>Cabinet Élite Paris</strong></div>
-                        <div><span>Dernière Connexion :</span> <strong id="current-date">Aujourd'hui</strong></div>
+                        <div><span>Profil Risque :</span> <strong>Modéré</strong></div>
+                        <div><span>Statut :</span> <strong id="current-date">Actif</strong></div>
                     </div>
                 </div>
 
-                <div class="section-title">Historique des opérations globales</div>
+                <div class="section-title">Historique des mouvements</div>
                 <div class="transactions-container" id="transactions-list">
-                    <div class="transaction-item" onclick="openDetails('Ordre Interbancaire de Compensation', '+7 500 000,00 €', 'Hier', 'Dépôt Institutionnel de Titres de Créances Privés (Fonds Certifiés)', 'Validé')">
+                    <div class="transaction-item" onclick="openDetails('Dépôt Institutionnel', '+7 500 000,00 €', 'Hier', 'Allocation initiale de fonds d\'investissement', 'Confirmé')">
                         <div class="tx-info">
                             <span class="tx-title">Transfert d'actifs financiers</span>
-                            <span class="tx-date">Hier • Compte d'investissement</span>
+                            <span class="tx-date">Hier • Compte Capital</span>
                         </div>
                         <span class="tx-amount positive">+7 500 000,00 €</span>
                     </div>
-                    <div class="transaction-item" onclick="openDetails('Versement Dividendes Annuels', '+85 024,00 €', 'Il y a 2 jours', 'Rendements de Valeurs Mobilières Cotées - Compte de Trading', 'Validé')">
+                    <div class="transaction-item" onclick="openDetails('Dividendes Annuels', '+85 024,00 €', 'Il y a 2 jours', 'Rendements de titres cotés', 'Confirmé')">
                         <div class="tx-info">
-                            <span class="tx-title">Virement reçu (Dividendes)</span>
+                            <span class="tx-title">Rendements d'actions</span>
                             <span class="tx-date">Il y a 2 jours • Euronext Clear</span>
                         </div>
                         <span class="tx-amount positive">+85 024,00 €</span>
@@ -104,21 +96,39 @@
 
             <!-- VIREMENTS INTERACTIFS -->
             <div id="transfer-section" class="app-section">
-                <div class="section-title">Émettre un virement de capitaux</div>
+                <div class="section-title">Émettre un virement interne / simulation</div>
                 <div class="form-card" id="form-container">
-                    <div class="form-field"><label>Débiteur</label><select disabled><option>Compte Courant Excellence (*094)</option></select></div>
-                    <div class="form-field"><label>Nom complet du bénéficiaire</label><input type="text" id="beneficiary" placeholder="Ex: Cabinet Notarial Garnier"></div>
-                    <div class="form-field"><label>IBAN National ou International</label><input type="text" id="iban-input" placeholder="FR76..."></div>
-                    <div class="form-field"><label>Code BIC / SWIFT</label><input type="text" id="bic-input" placeholder="Ex: HEXAFRPPXXX"></div>
-                    <div class="form-field"><label>Montant du transfert (€)</label><input type="number" id="amount-input" placeholder="0.00"></div>
-                    <div class="form-field"><label>Libellé de l'opération</label><input type="text" id="reason-input" placeholder="Motif officiel obligatoire"></div>
-                    <button class="btn-action" id="btn-transfert" onclick="startTransferAnimation()">Signer et envoyer les fonds</button>
+                    <div class="form-field">
+                        <label>Débiteur</label>
+                        <select disabled><option>Portefeuille d'Investissement (*8842)</option></select>
+                    </div>
+                    <div class="form-field">
+                        <label>Bénéficiaire</label>
+                        <input type="text" id="beneficiary" placeholder="Ex: Compte Épargne Projet">
+                    </div>
+                    <div class="form-field">
+                        <label>Référence / IBAN cible</label>
+                        <input type="text" id="iban-input" placeholder="FR76 1000 2000...">
+                    </div>
+                    <div class="form-field">
+                        <label>Code BIC / SWIFT</label>
+                        <input type="text" id="bic-input" placeholder="Ex: HEXAFRPPXXX">
+                    </div>
+                    <div class="form-field">
+                        <label>Montant (€)</label>
+                        <input type="number" id="amount-input" placeholder="0.00">
+                    </div>
+                    <div class="form-field">
+                        <label>Libellé / Note</label>
+                        <input type="text" id="reason-input" placeholder="Raison du transfert">
+                    </div>
+                    <button class="btn-action" id="btn-transfert" onclick="startTransferAnimation()">Valider l'allocation</button>
                 </div>
 
                 <!-- JAUGE DE CHARGEMENT PROGRESSIVE -->
                 <div id="loader-container" class="loader-box" style="display: none;">
-                    <h4>SÉCURISATION DU TRANSFERT EN COURS...</h4>
-                    <p>Contrôle de conformité réglementaire SEPA/TRACFIN</p>
+                    <h4>TRAITEMENT DE LA SIMULATION EN COURS...</h4>
+                    <p>Validation et mise à jour du portefeuille</p>
                     <div class="progress-bar-bg"><div id="progress-bar-fill" class="progress-bar-fill"></div></div>
                     <div id="progress-text" class="progress-text">0%</div>
                 </div>
@@ -126,7 +136,7 @@
 
             <!-- CARTES DE CRÉDIT -->
             <div id="card-section" class="app-section">
-                <div class="section-title">Moyens de paiement Élite</div>
+                <div class="section-title">Moyens de Paiement Démo</div>
                 <div class="credit-card-ui">
                     <div class="cc-brand">Hexagone Finance</div>
                     <div class="cc-chip"></div>
@@ -137,8 +147,8 @@
                     </div>
                 </div>
                 <div class="card-status-box">
-                    <div class="status-row"><span>Statut Global</span><span class="status-badge" style="background:#fee2e2; color:#ef4444; font-weight:700;">GELÉE TEMPORAIREMENT</span></div>
-                    <div class="status-row"><span>Plafond de Virement Élevé</span><strong>Indéterminé</strong></div>
+                    <div class="status-row"><span>Statut Carte</span><span class="status-badge" style="background:#dcfce7; color:#15803d; font-weight:700;">ACTIVE</span></div>
+                    <div class="status-row"><span>Plafond Mensuel</span><strong>50 000,00 €</strong></div>
                 </div>
             </div>
         </main>
@@ -146,23 +156,23 @@
         <!-- MODAL DÉTAILS TRANSACTIONS -->
         <div class="modal-overlay" id="tx-modal" style="display: none;">
             <div class="modal-card">
-                <h3 id="modal-title">Détails du transfert</h3>
+                <h3 id="modal-title">Détails du mouvement</h3>
                 <hr>
                 <div class="modal-body">
                     <p><strong>Type:</strong> <span id="modal-type"></span></p>
                     <p><strong>Montant:</strong> <span id="modal-amount"></span></p>
-                    <p><strong>Date d'émission:</strong> <span id="modal-date"></span></p>
-                    <p><strong>Motif de la transaction:</strong> <span id="modal-reason"></span></p>
-                    <p><strong>Statut de conformité:</strong> <span id="modal-status"></span></p>
+                    <p><strong>Date:</strong> <span id="modal-date"></span></p>
+                    <p><strong>Note:</strong> <span id="modal-reason"></span></p>
+                    <p><strong>Statut:</strong> <span id="modal-status"></span></p>
                 </div>
-                <button class="btn-action" style="background:#475569;" onclick="closeDetails()">Fermer la fiche</button>
+                <button class="btn-action" style="background:#475569;" onclick="closeDetails()">Fermer</button>
             </div>
         </div>
 
         <nav class="app-nav">
             <button class="nav-item active-nav" onclick="showSection('home-section')"><span class="nav-icon">📊</span><span class="nav-label">Portefeuille</span></button>
             <button class="nav-item" onclick="showSection('transfer-section')"><span class="nav-icon">💸</span><span class="nav-label">Virements</span></button>
-            <button class="nav-item" onclick="showSection('card-section')"><span class="nav-icon">💳</span><span class="nav-label">Gestion Cartes</span></button>
+            <button class="nav-item" onclick="showSection('card-section')"><span class="nav-icon">💳</span><span class="nav-label">Cartes</span></button>
         </nav>
     </div>
 
